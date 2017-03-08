@@ -1,3 +1,5 @@
+***Attention, this script has changed and does not behave like the original because its installation is via bash-it***
+
 Bang.sh - for easy Shell Scripting
 ==================================
 
@@ -55,7 +57,7 @@ automatically loaded, so you can define any function in there, that it will be a
 After sourcing the `bangsh.sh` file, several functions namespaced by `b` will be available, for instance:
 
 * use `b.module.require unittest` to require modules from bangsh or from your modules folder
-* use `b.get bang.working_dir` to get information, like where the command was called from: 
+* use `b.get bang.working_dir` to get information, like where the command was called from:
 
 In the next sections there's more detailed information with some examples that will let you understand how the `b` namespace is used.
 
@@ -86,7 +88,7 @@ Remember that exactly like your own modules, those included with bang by default
 
 # Tasks
 
-A task is like an action your executable will perform. It is how `bang new` and `bang test` work. 
+A task is like an action your executable will perform. It is how `bang new` and `bang test` work.
 
 Every task file should include at least one function (the entrypoint) following the pattern:
 
@@ -153,7 +155,7 @@ By sourcing bang.sh you get by default some useful utils, e.g:
 * Print to stderr `print_e`
 * Sanitize an argument with `sanitize_arg` this is useful to remove semicolons, pipes, ampersands, etc. that could lead to code injections. Examples can be found in the [bang tests](https://github.com/bangsh/bangsh/blob/master/tests/bang_test.sh#L27-L32)
 * Escape argument: `escape_arg` (turns -- into \--)
-* Check whether the argument is a valid module: `is_module?` 
+* Check whether the argument is a valid module: `is_module?`
 
 All this helpers together with others (like the global scope variables), are defined in the [bang.sh source](https://github.com/bangsh/bangsh/blob/master/src/bang.sh)
 
@@ -189,7 +191,7 @@ In the previos example `i_dont_know_what_it_is` and `file_not_found` are simply 
 
 To store information accessible from anywhere in the program during it's excution, you can use `b.set` using the format: `b.set <registry>.<key> <value>`.
 
-As a convention, the `bang` registry is reserved for things like: `b.set bang.working_dir $(pwd)` (allows you to know exactly from what folder the program executiong began). 
+As a convention, the `bang` registry is reserved for things like: `b.set bang.working_dir $(pwd)` (allows you to know exactly from what folder the program executiong began).
 
 The bang registry also stores information about added tasks, e.g: `b.get bang.tasks.taskname` would return the description of `taskname`.
 
