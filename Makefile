@@ -38,5 +38,5 @@ build-docs:
 clean:
 	rm -rf dist
 	rm $(BASH_IT_HOME)/plugins/available/$(BASH_IT_PLUGIN)
-	bash --login disabl.sh
+	bash --login disable.sh
 
