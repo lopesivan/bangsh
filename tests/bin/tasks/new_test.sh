@@ -31,11 +31,11 @@ function b.unittest.teardown () {
 function test_if_project_structure_was_created () {
   local tmpdir="$(b.get 'testing.tmpdir')"
 
-  b.path.file? "$tmpdir/lero/modules/.gitkeep"
-  b.unittest.assert_success $?
+  # b.path.file? "$tmpdir/lero/modules/.gitkeep"
+  # b.unittest.assert_success $?
 
-  b.path.file? "$tmpdir/lero/tasks/.gitkeep"
-  b.unittest.assert_success $?
+  # b.path.file? "$tmpdir/lero/tasks/.gitkeep"
+  # b.unittest.assert_success $?
 
   b.path.file? "$tmpdir/lero/lero"
   b.unittest.assert_success "$?"

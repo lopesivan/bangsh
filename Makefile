@@ -1,3 +1,6 @@
+BASH_IT_HOME   = ~/.bash_it
+BASH_IT_PLUGIN = bangsh.plugin.bash
+
 prefix ?= /usr/local
 
 test:
@@ -5,11 +8,9 @@ test:
 
 install: install-bang install-doc
 
-dist: build-bang build-docs
-
-install-bang: clean build-bang
-	-mkdir -p $(prefix)/bin
-	cp dist/bang $(prefix)/bin/bang
+install-bang:
+	cat $(BASH_IT_PLUGIN) |sed 's=__bang_sh_dir__=${PWD}=' > $(BASH_IT_HOME)/plugins/available/$(BASH_IT_PLUGIN)
+	bash --login enable.sh
 
 install-doc: build-docs
 	-mkdir -p $(prefix)/doc/bangsh
@@ -21,15 +22,6 @@ install-doc: build-docs
 	cp dist/docs/bang-new.1.gz $(prefix)/man/
 	cp dist/docs/bang-run.1.gz $(prefix)/man/
 	cp dist/docs/bang-test.1.gz $(prefix)/man/
-
-build-bang: clean
-	mkdir dist/
-	echo "#!/usr/bin/env bash" > dist/bang
-	cat LICENSE | sed 's/^/# /' >> dist/bang
-	cat "boot.sh" >> dist/bang
-	cat modules/* tasks/* >> dist/bang
-	echo 'b._run "$$@"' >> dist/bang
-	chmod +x dist/bang
 
 build-docs:
 	mkdir -p dist/docs
@@ -44,4 +36,7 @@ build-docs:
 	gzip dist/docs/bang.1 dist/docs/bang-new.1 dist/docs/bang-run.1 dist/docs/bang-test.1
 
 clean:
-	@-rm -rf dist/
+	rm -rf dist
+	rm $(BASH_IT_HOME)/plugins/available/$(BASH_IT_PLUGIN)
+	bash --login disabl.sh
+
