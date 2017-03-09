@@ -10,7 +10,6 @@ install: install-bang install-doc
 
 install-bang:
 	cat $(BASH_IT_PLUGIN) |sed 's=__bang_sh_dir__=${PWD}=' > $(BASH_IT_HOME)/plugins/available/$(BASH_IT_PLUGIN)
-	bash --login enable.sh
 
 install-doc: build-docs
 	-mkdir -p $(prefix)/doc/bangsh
@@ -38,5 +37,3 @@ build-docs:
 clean:
 	rm -rf dist
 	rm $(BASH_IT_HOME)/plugins/available/$(BASH_IT_PLUGIN)
-	bash --login disable.sh
-

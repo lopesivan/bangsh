@@ -111,6 +111,9 @@ function b.raise () {
   local exception="$1"
   shift
   if echo "${FUNCNAME[@]}" | grep -q 'b.try.do'; then
+
+    echo function: `tput bold`${FUNCNAME[1]}`tput sgr0`
+
     b.set "Bang.Exception.Name" "$exception"
     b.set "Bang.Exception.Msg" "$*"
   else
