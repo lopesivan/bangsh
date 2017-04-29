@@ -1,4 +1,4 @@
-BASH_IT_HOME   = ~/.bash_it
+BASH_IT_HOME   = ~/developer/bash-it
 BASH_IT_PLUGIN = bangsh.plugin.bash
 
 prefix ?= /usr/local
