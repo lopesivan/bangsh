@@ -112,7 +112,20 @@ function b.raise () {
   shift
   if echo "${FUNCNAME[@]}" | grep -q 'b.try.do'; then
 
-    echo function: `tput bold`${FUNCNAME[1]}`tput sgr0`
+    local function=$(echo ${FUNCNAME[1]} |
+      sed -e 's/^_\([^.]\+\)\..*/\1/')
+
+    function=${function}.exception.$(echo $exception |
+      sed -e 's/\([A-Z]\)/_\L\1/g' -e 's/^_//' -e 's/_exception//')
+
+    echo 'function :' `tput bold`${FUNCNAME[1]}`tput sgr0`
+    echo 'exception:' "$exception"
+    echo -n 'message  : '
+    tput bold
+    tput setb 3
+    tput setaf 3
+    $function
+    tput sgr0
 
     b.set "Bang.Exception.Name" "$exception"
     b.set "Bang.Exception.Msg" "$*"
